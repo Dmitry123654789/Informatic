@@ -1,0 +1,40 @@
+.button-tests {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.button-tests .btn {
+    width: 60%;
+}
+
+.highlight {
+    background-color: yellow;
+    transition: background-color 0.3s;
+}
+
+.current {
+    background-color: orange !important;
+}
+
+.controls {
+    margin-top: 10px;
+}
+
+#searchInput {
+    padding: 5px;
+}
+
+button {
+    padding: 5px 10px;
+    margin-left: 5px;
+}
+
+body {
+    font-family: sans-serif;
+    padding: 20px;
+}
