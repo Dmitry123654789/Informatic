@@ -1,5 +1,3 @@
-from typing import final
-
 from flask import Flask, render_template
 import os
 from docx import Document
