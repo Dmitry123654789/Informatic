@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <div align="center">
+{#    <a>Поддержите пж <a id="copy" href="" onclick="copyDivToClipboard()">+79002616186</a>(альфа)</a>#}
+    </div>
     <div align="center" class="button-tests">
         {% for name in names %}
             <a class="btn btn-outline-primary" href="/tests/{{ loop.index }}">{{ name }}</a>
@@ -8,4 +11,15 @@
         {% endfor %}
         <a class="btn btn-outline-danger" href="/all_tests">All</a>
     </div>
+
+    <script>
+        function copyDivToClipboard() {
+            var range = document.createRange();
+            range.selectNode(document.getElementById("copy"));
+            window.getSelection().removeAllRanges(); // clear current selection
+            window.getSelection().addRange(range); // to select text
+            document.execCommand("copy");
+            window.getSelection().removeAllRanges();// to deselect
+        }
+    </script>
 {% endblock %}

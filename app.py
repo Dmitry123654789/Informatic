@@ -27,14 +27,17 @@ def show_test(test_id):
         if "image" in rel.target_ref:
             img_data = rel.target_part.blob
             img_base64 = base64.b64encode(img_data).decode('utf-8')
-            images.append((img_base64, int(rel.target_ref[11:-4])))
+            s = rel.target_ref.split('.')
+            images.append((img_base64, int(s[0][11:])))
     images.sort(key=lambda x: x[1])
-
     i = 0
     for n, x in enumerate(new_lst):
         if x == 'img':
-            new_lst[n] = 'img' + images[i][0]
-            i += 1
+            try:
+                new_lst[n] = 'img' + images[i][0]
+                i += 1
+            except IndexError:
+                break
 
     return render_template('show_test.html', strings=new_lst, images=images)
 
@@ -47,6 +50,26 @@ def show_all_test():
         new_lst = []
         for x in [x.text for x in doc.paragraphs]:
             new_lst += [y.strip() for y in x.split('\n')]
+
+        images = []
+        for rel in doc.part._rels:
+            rel = doc.part._rels[rel]
+            if "image" in rel.target_ref:
+                img_data = rel.target_part.blob
+                img_base64 = base64.b64encode(img_data).decode('utf-8')
+                s = rel.target_ref.split('.')
+                images.append((img_base64, int(s[0][11:])))
+
+        images.sort(key=lambda x: x[1])
+        i = 0
+        for n, x in enumerate(new_lst):
+            if x == 'img':
+                try:
+                    new_lst[n] = 'img' + images[i][0]
+                    i += 1
+                except IndexError:
+                    break
+
         final_lst.append('')
         final_lst.append('')
         final_lst += new_lst

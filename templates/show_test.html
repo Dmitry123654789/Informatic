@@ -19,12 +19,12 @@
             {% elif s[0] == '?' %}
                 <h4><br>{{ s[1:] }}</h4>
             {% elif s[:3] == 'img' %}
-                <img src="data:image/png;base64,{{ s[3:] }}" alt="Base64 Image" style="max-width: 130px;">
+                <img src="data:image/png;base64,{{ s[3:] }}" alt="Base64 Image" style="max-width: 150px;">
             {% else %}
                 <h6>{{ s }}</h6>
             {% endif %}
         {% endfor %}
     </div>
-
+    <div style="height: 130px"></div>
     <script src="{{ url_for('static', filename='js/search.js') }}"></script>
 {% endblock %}
