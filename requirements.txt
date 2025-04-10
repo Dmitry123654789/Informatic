@@ -1,0 +1,11 @@
+blinker
+click
+colorama
+Flask
+itsdangerous
+Jinja2
+lxml
+MarkupSafe
+python-docx
+typing_extensions
+Werkzeug
