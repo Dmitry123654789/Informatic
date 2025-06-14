@@ -3,7 +3,7 @@ import base64
 from flask import Flask, render_template
 import os
 from docx import Document
-
+from data.db_session import global_init
 app = Flask(__name__)
 my_dir = os.path.dirname(__file__)
 NAMES_TESTS = sorted(os.listdir(os.path.join(my_dir, 'tests_9')))
@@ -78,4 +78,5 @@ def show_all_test():
 
 
 if __name__ == '__main__':
+    global_init('db/informatic_questions.db')
     app.run()
