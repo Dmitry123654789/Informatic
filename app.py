@@ -58,7 +58,7 @@ def show_all_test():
                 img_data = rel.target_part.blob
                 img_base64 = base64.b64encode(img_data).decode('utf-8')
                 s = rel.target_ref.split('.')
-                images.append((img_base64, int(s[0][11:])))
+                print(s)
 
         images.sort(key=lambda x: x[1])
         i = 0
