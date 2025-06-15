@@ -5,13 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-DQvkBjpPgn7RC31MCQoOeC9TI2kdqa4+BSgNMNj8v77fdC77Kj5zpWFTJaaAoMbC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            crossorigin="anonymous"></script>
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
-    <title>\_/</title>
+    <title>{{ title }}</title>
     <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
 </head>
 <body>
-<!-- Begin page content -->
 <main role="main" class="contener">
+<div class="offcanvas offcanvas-start text-bg-dark" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
+         aria-labelledby="staticBackdropLabel">
+        <div class="offcanvas-header">
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body" style="padding-top: 0">
+            <div class="offcanvas-title" id="staticBackdropLabel"><a style="color: #fff !important"
+                                                                     class="text-nav-title">Ответы</a></div>
+            <div class="div-nav-navigane"><a class="text-nav-navigane" href="/class/8">8 класс</a></div>
+            <div class="div-nav-navigane"><a class="text-nav-navigane" href="/class/9">9 класс</a></div>
+            <div class="div-nav-navigane"><a class="text-nav-navigane" href="/class/10">10 класс</a></div>
+            <div class="div-nav-navigane"><a class="text-nav-navigane" href="/class/11">11 класс</a></div>
+        </div>
+    </div>
+    <button class="btn-thread-line" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
+            aria-controls="staticBackdrop">
+        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" width="16">
+            <path style="fill: white;"
+                  d="M1 2.75A.75.75 0 0 1 1.75 2h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 2.75Zm0 5A.75.75 0 0 1 1.75 7h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 7.75ZM1.75 12h12.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Z"></path>
+        </svg>
+    </button>
     {% block content %}{% endblock %}
 </main>
 </body>

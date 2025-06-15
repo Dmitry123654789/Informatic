@@ -1,80 +1,50 @@
-import base64
-
 from flask import Flask, render_template
-import os
-from docx import Document
-from data.db_session import global_init
+
+from data.answer_questions import AnswerQuestion
+from data.db_session import global_init, create_session
+from data.questions import Question
+from data.theme_questions import ThemeQuestions
+from data.training_class import TrainingClass
+
 app = Flask(__name__)
-my_dir = os.path.dirname(__file__)
-NAMES_TESTS = sorted(os.listdir(os.path.join(my_dir, 'tests_9')))
 
 
 @app.route('/')
 def index():
-    return render_template('index.html', names=NAMES_TESTS)
+    return render_template('index.html', title='Главная')
 
 
-@app.route('/tests/<test_id>')
-def show_test(test_id):
-    doc = Document(os.path.join(my_dir, f'tests_9/{NAMES_TESTS[int(test_id) - 1]}'))
-    new_lst = []
-    for x in [x.text for x in doc.paragraphs]:
-        new_lst += [y.strip() for y in x.split('\n')]
-
-    images = []
-    for rel in doc.part._rels:
-        rel = doc.part._rels[rel]
-        if "image" in rel.target_ref:
-            img_data = rel.target_part.blob
-            img_base64 = base64.b64encode(img_data).decode('utf-8')
-            s = rel.target_ref.split('.')
-            images.append((img_base64, int(s[0][11:])))
-    images.sort(key=lambda x: x[1])
-    i = 0
-    for n, x in enumerate(new_lst):
-        if x == 'img':
-            try:
-                new_lst[n] = 'img' + images[i][0]
-                i += 1
-            except IndexError:
-                break
-
-    return render_template('show_test.html', strings=new_lst, images=images)
+@app.route('/class/<class_name>')
+def class_page(class_name):
+    with create_session() as session:
+        train_class = session.query(TrainingClass).filter(TrainingClass.name == class_name).first()
+        themes = session.query(ThemeQuestions).filter(ThemeQuestions.class_id == train_class.id).all()
+    return render_template('class_page.html', title=f'Ответы {class_name} класс', themes=themes, class_name=class_name)
 
 
-@app.route('/all_tests')
-def show_all_test():
-    final_lst = []
-    for name in NAMES_TESTS:
-        doc = Document(os.path.join(my_dir, f'tests_9/{name}'))
-        new_lst = []
-        for x in [x.text for x in doc.paragraphs]:
-            new_lst += [y.strip() for y in x.split('\n')]
+@app.route('/class/<class_name>/tests/<test_id>')
+def show_test(class_name, test_id):
+    with create_session() as session:
+        train_class = session.query(TrainingClass).filter(TrainingClass.name == class_name).first()
+        theme = session.query(ThemeQuestions).filter(ThemeQuestions.class_id == train_class.id, ThemeQuestions.id == test_id,).first()
+        questions = session.query(Question).filter(Question.theme_id == theme.id)
 
-        images = []
-        for rel in doc.part._rels:
-            rel = doc.part._rels[rel]
-            if "image" in rel.target_ref:
-                img_data = rel.target_part.blob
-                img_base64 = base64.b64encode(img_data).decode('utf-8')
-                s = rel.target_ref.split('.')
-                print(s)
+    # ["название теста", ("вопрос", ["фото"], ["ответы"])]
+    lst_questions = [theme.name]
+    for question in questions:
+        que_que = question.question.splitlines()
+        que = [que_que[0], que_que[1:]]
+        with create_session() as session:
+            answ = session.query(AnswerQuestion).filter(AnswerQuestion.question_id == question.id).all()
+        que += [[x.answer for x in answ]]
+        lst_questions.append(que)
 
-        images.sort(key=lambda x: x[1])
-        i = 0
-        for n, x in enumerate(new_lst):
-            if x == 'img':
-                try:
-                    new_lst[n] = 'img' + images[i][0]
-                    i += 1
-                except IndexError:
-                    break
+    return render_template('show_test.html', title=theme.name, questions=lst_questions, class_name=class_name)
 
-        final_lst.append('')
-        final_lst.append('')
-        final_lst += new_lst
 
-    return render_template('show_test.html', strings=final_lst)
+@app.route('/class/<class_id>/tests/all_tests')
+def show_all_test(class_id):
+    return render_template('show_all_test.html')
 
 
 if __name__ == '__main__':

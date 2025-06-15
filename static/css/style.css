@@ -38,3 +38,92 @@ body {
     font-family: sans-serif;
     padding: 20px;
 }
+
+.text-nav-navigane {
+    font-size: 20px;
+}
+
+.div-nav-navigane {
+    border: 0 solid rgba(255, 255, 255, 0);
+    border-bottom-width: 1px;
+}
+
+.div-nav-navigane:hover {
+    border-bottom-color: #FFFFFF;
+}
+
+.offcanvas-body * {
+    color: white;
+    margin: 10px 15px;
+}
+
+.offcanvas-title {
+    margin-top: 0;
+    margin-bottom: 30px
+}
+
+.background-fill {
+    background-color: hsla(44.4, 76.2%, 75.3%, 0.91);
+    background-image: radial-gradient(at 96% 93%, hsla(40, 44%, 84%, 0.82) 0px, transparent 50%),
+    radial-gradient(at 2% 7%, hsla(40, 44%, 84%, 0.82) 0px, transparent 50%),
+    radial-gradient(at 5% 91%, hsla(40, 44%, 84%, 0.82) 0px, transparent 50%),
+    radial-gradient(at 95% 13%, hsla(40, 44%, 84%, 0.82) 0px, transparent 50%);
+}
+
+.btn-thread-line {
+    left: 30px;
+    top: 20px;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #5c6063;
+    border-color: white;
+    border-radius: 6px;
+}
+
+.btn-thread-line:hover {
+    opacity: 0.8;
+}
+
+.modal-window .btn-close {
+    position: absolute;
+    border: none;
+    background: none;
+    opacity: 0.7;
+    right: 10px;
+    top: 10px;
+}
+
+.modal-window .btn-close:hover {
+    opacity: 1;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    font-family: Inter, Arial !important;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 140%;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+}
+
+div {
+    letter-spacing: 0;
+}
+
+.offcanvas-body * {
+    color: white;
+    margin: 10px 15px;
+}
+
+
+.text-nav-title {
+    font-size: 30px;
+    margin-bottom: 0;
+}
+
