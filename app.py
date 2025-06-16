@@ -43,7 +43,6 @@ def index():
 
 @app.route('/class/<class_name>')
 def class_page(class_name):
-    print(current_user.is_authenticated)
     with create_session() as session:
         train_class = chech_class(class_name)
         themes = session.query(ThemeQuestions).filter(ThemeQuestions.class_id == train_class.id).all()

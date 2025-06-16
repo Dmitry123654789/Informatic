@@ -18,13 +18,13 @@ def translate_rus_to_eng(word, replase_space='_'):
 
 global_init('../db/informatic_questions.db')
 
-CLASS_ID = 1
-CLASS = 9
-NAMES_TESTS = sorted(os.listdir(os.path.join('../', f'tests_{CLASS}')))
+CLASS_ID = 3
+CLASS = 10
+NAMES_TESTS = sorted(os.listdir(os.path.join('../', f'tests_{CLASS}')))[1:]
 
 with create_session() as session:
-    theme_id = 0
-    question_id = 0
+    theme_id = session.query(ThemeQuestions).all()[-1].id
+    question_id = session.query(Question).all()[-1].id
     for name in NAMES_TESTS:
         doc = Document(os.path.join('../', f'tests_{CLASS}/{name}'))
 
@@ -60,10 +60,10 @@ with create_session() as session:
                 session.commit()
 
 
-        # for rel in doc.part._rels:
-        #     rel = doc.part._rels[rel]
-        #     if "image" in rel.target_ref:
-        #         img_data = rel.target_part.blob
-        #         img_name = rel.target_ref.split('/')[-1].split('.')
-        #         with open(f'../static/img/questions/{CLASS}/{tr}_{img_name[0][5:]}.{img_name[1]}', 'wb') as f:
-        #             f.write(img_data)
+        for rel in doc.part._rels:
+            rel = doc.part._rels[rel]
+            if "image" in rel.target_ref:
+                img_data = rel.target_part.blob
+                img_name = rel.target_ref.split('/')[-1].split('.')
+                with open(f'../static/img/questions/{CLASS}/{tr}_{img_name[0][5:]}.{img_name[1]}', 'wb') as f:
+                    f.write(img_data)
