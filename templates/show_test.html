@@ -1,33 +1,46 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div style="position: fixed; right: 10px; bottom: 10px; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); z-index: 1000;">
-    <input type="text" id="searchInput" placeholder="Введите текст для поиска">
-    <button onclick="searchText()">Искать</button>
-    <div class="controls" style="display:none;">
-        <button onclick="prevMatch()">⬆️ Назад</button>
-        <button onclick="nextMatch()">⬇️ Далее</button>
-        <span id="matchCounter"></span>
+    <div style="position: fixed; right: 10px; bottom: 10px; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); z-index: 1000;">
+        <input type="text" id="searchInput" placeholder="Введите текст для поиска">
+        <button onclick="searchText()">Искать</button>
+        <div class="controls" style="display:none;">
+            <button onclick="prevMatch()">⬆️ Назад</button>
+            <button onclick="nextMatch()">⬇️ Далее</button>
+            <span id="matchCounter"></span>
+        </div>
     </div>
-</div>
-<div style="margin: 5%">
-    {#       ["название теста", ("вопрос", ["фото"], ["ответы"])]#}
-    <div align="center">
-        <a href="/class/{{ class_name }}" style="font-size: 2rem; text-decoration: none;">{{ questions[0] }}</a>
-    </div>
-    {% for que in questions[1:] %}
-        <h4><br>{{ que[0] }}</h4>
+    <div style="margin: 5%">
+        {#       ["название теста", ("вопрос", ["фото"], ["ответы"])]#}
+        <div align="center">
+            <a href="/class/{{ class_name }}" style="font-size: 2rem; text-decoration: none;">{{ questions[0] }}</a>
+        </div>
+        {% for que in questions[1:] %}
+            <h4><br>{{ que[0] }}</h4>
 
-        {% for img in que[1] %}
-            <img src="{{ img }}" alt="фото потерялось(" style="max-width: 150px;">
+            {% for src_img in que[1] %}
+                <a href="#" class="gallery-item" data-easy-toggle="#modalWin"
+                   data-easy-class="show" data-easy-rcoe>
+                    <img src="{{ src_img }}" alt="фото потерялось(" style="max-width: 150px;">
+                </a>
+            {% endfor %}
+
+            {% for answer in que[2] %}
+                <h6>{{ loop.index }}) {{ answer }}</h6>
+            {% endfor %}
         {% endfor %}
 
-        {% for answer in que[2] %}
-            <h6>{{ loop.index }}) {{ answer }}</h6>
-        {% endfor %}
-    {% endfor %}
-
-</div>
-<div style="height: 130px"></div>
-<script src="{{ url_for('static', filename='js/search.js') }}"></script>
+    </div>
+    <div style="height: 130px"></div>
+    <div id="modalWin" class="modal">
+        <button class="modal-prev">&#10094;</button>
+        <button class="modal-next">&#10095;</button>
+        <div class="modal-window">
+            <img src="">
+        </div>
+        <div class="overlay" data-easy-toggle="#modalWin" data-easy-class="show" data-easy-rcoe></div>
+    </div>
+    <script src="{{ url_for('static', filename='js/modal_wind.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/view_photo.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/search.js') }}"></script>
 {% endblock %}

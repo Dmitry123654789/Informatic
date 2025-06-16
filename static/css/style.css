@@ -1,101 +1,7 @@
-.button-tests {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: 100vh;
-    width: 100%;
-}
-
-.button-tests .btn {
-    width: 60%;
-}
-
-.highlight {
-    background-color: yellow;
-    transition: background-color 0.3s;
-}
-
-.current {
-    background-color: orange !important;
-}
-
-.controls {
-    margin-top: 10px;
-}
-
-#searchInput {
-    padding: 5px;
-}
-
-button {
-    padding: 5px 10px;
-    margin-left: 5px;
-}
-
+/* Base Styles */
 body {
     font-family: sans-serif;
     padding: 20px;
-}
-
-.text-nav-navigane {
-    font-size: 20px;
-}
-
-.div-nav-navigane {
-    border: 0 solid rgba(255, 255, 255, 0);
-    border-bottom-width: 1px;
-}
-
-.div-nav-navigane:hover {
-    border-bottom-color: #FFFFFF;
-}
-
-.offcanvas-body * {
-    color: white;
-    margin: 10px 15px;
-}
-
-.offcanvas-title {
-    margin-top: 0;
-    margin-bottom: 30px
-}
-
-.background-fill {
-    background-color: hsla(44.4, 76.2%, 75.3%, 0.91);
-    background-image: radial-gradient(at 96% 93%, hsla(40, 44%, 84%, 0.82) 0px, transparent 50%),
-    radial-gradient(at 2% 7%, hsla(40, 44%, 84%, 0.82) 0px, transparent 50%),
-    radial-gradient(at 5% 91%, hsla(40, 44%, 84%, 0.82) 0px, transparent 50%),
-    radial-gradient(at 95% 13%, hsla(40, 44%, 84%, 0.82) 0px, transparent 50%);
-}
-
-.btn-thread-line {
-    left: 30px;
-    top: 20px;
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    background-color: #5c6063;
-    border-color: white;
-    border-radius: 6px;
-}
-
-.btn-thread-line:hover {
-    opacity: 0.8;
-}
-
-.modal-window .btn-close {
-    position: absolute;
-    border: none;
-    background: none;
-    opacity: 0.7;
-    right: 10px;
-    top: 10px;
-}
-
-.modal-window .btn-close:hover {
-    opacity: 1;
 }
 
 html {
@@ -116,14 +22,235 @@ div {
     letter-spacing: 0;
 }
 
-.offcanvas-body * {
-    color: white;
-    margin: 10px 15px;
+/* Button Styles */
+button {
+    padding: 5px 10px;
+    margin-left: 5px;
 }
 
+.btn-thread-line {
+    position: absolute;
+    left: 30px;
+    top: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: #5c6063;
+    border-color: white;
+    border-radius: 6px;
+}
+
+.btn-thread-line:hover {
+    opacity: 0.8;
+}
+
+/* Navigation Styles */
+.text-nav-navigane {
+    font-size: 20px;
+}
 
 .text-nav-title {
     font-size: 30px;
     margin-bottom: 0;
 }
 
+.div-nav-navigane {
+    border: 0 solid rgba(255, 255, 255, 0);
+    border-bottom-width: 1px;
+}
+
+.div-nav-navigane:hover {
+    border-bottom-color: #FFFFFF;
+}
+
+/* Offcanvas Styles */
+.offcanvas-body * {
+    color: white;
+    margin: 10px 15px;
+}
+
+.offcanvas-title {
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+/* Background Styles */
+.background-fill {
+    background-color: hsla(44.4, 76.2%, 75.3%, 0.91);
+    background-image:
+        radial-gradient(at 96% 93%, hsla(40, 44%, 84%, 0.82) 0px, transparent 50%),
+        radial-gradient(at 2% 7%, hsla(40, 44%, 84%, 0.82) 0px, transparent 50%),
+        radial-gradient(at 5% 91%, hsla(40, 44%, 84%, 0.82) 0px, transparent 50%),
+        radial-gradient(at 95% 13%, hsla(40, 44%, 84%, 0.82) 0px, transparent 50%);
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    z-index: -1;
+    opacity: 0;
+    transition: all .09s ease-out;
+}
+
+.modal.show {
+    visibility: visible;
+    z-index: 1000;
+    opacity: 1;
+}
+
+.modal .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    opacity: 0.7;
+    z-index: 0;
+}
+
+.modal-window {
+    position: relative;
+    z-index: 2;
+    width: auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, .4);
+    background-color: rgba(74, 74, 74, 0.5);
+    padding: 2px;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.modal-window img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.modal-window .btn-close {
+    position: absolute;
+    border: none;
+    background: none;
+    opacity: 0.7;
+    right: 10px;
+    top: 10px;
+}
+
+.modal-window .btn-close:hover {
+    opacity: 1;
+}
+
+/* Modal Navigation Arrows */
+.modal-prev,
+.modal-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    opacity: 50%;
+}
+
+.modal-prev {
+    left: 40px;
+}
+
+.modal-next {
+    right: 40px;
+}
+
+.modal-prev:hover,
+.modal-next:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Form Elements */
+#searchInput {
+    padding: 5px;
+}
+
+.modal h2 {
+    margin-bottom: 15px;
+}
+
+.modal input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modal .send_mess {
+    width: 100%;
+    padding: 10px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    margin-top: 15px;
+}
+
+.modal .send_mess:hover {
+    background: darkred;
+}
+
+/* Test Button Styles */
+.button-tests {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.button-tests .btn {
+    width: 60%;
+}
+
+/* Highlight Styles */
+.highlight {
+    background-color: yellow;
+    transition: background-color 0.3s;
+}
+
+.current {
+    background-color: orange !important;
+}
+
+.controls {
+    margin-top: 10px;
+}

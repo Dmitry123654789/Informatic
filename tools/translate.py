@@ -39,12 +39,12 @@ with create_session() as session:
 
             tr = translate_rus_to_eng(name).split('.')[0]
             if x[0] == '!':
+                img_ind = 0
                 theme_id += 1
                 theme = ThemeQuestions(id=theme_id, class_id=CLASS_ID, name=x[1:].strip())
                 session.add(theme)
                 session.commit()
             elif x[0] == '?':
-                img_ind = 0
                 question_id += 1
                 question = Question(id=question_id, question=x[1:].strip(), theme_id=theme_id)
                 session.add(question)
@@ -56,14 +56,14 @@ with create_session() as session:
             elif x[0:3] == 'img':
                 img_ind += 1
                 que = session.get(Question, question_id)
-                que.question = que.question + f'\nstatic/img/questions/{CLASS}/{tr}_{img_ind}.png'
+                que.question = que.question + f'\n/static/img/questions/{CLASS}/{tr}_{img_ind}.png'
                 session.commit()
 
 
-        for rel in doc.part._rels:
-            rel = doc.part._rels[rel]
-            if "image" in rel.target_ref:
-                img_data = rel.target_part.blob
-                img_name = rel.target_ref.split('/')[-1].split('.')
-                with open(f'../static/img/questions/{CLASS}/{tr}_{img_name[0][5:]}.{img_name[1]}', 'wb') as f:
-                    f.write(img_data)
+        # for rel in doc.part._rels:
+        #     rel = doc.part._rels[rel]
+        #     if "image" in rel.target_ref:
+        #         img_data = rel.target_part.blob
+        #         img_name = rel.target_ref.split('/')[-1].split('.')
+        #         with open(f'../static/img/questions/{CLASS}/{tr}_{img_name[0][5:]}.{img_name[1]}', 'wb') as f:
+        #             f.write(img_data)
