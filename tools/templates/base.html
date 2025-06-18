@@ -28,6 +28,7 @@
             <div class="div-nav-navigane"><a class="text-nav-navigane" href="/class/10">10 класс</a></div>
             <div class="div-nav-navigane"><a class="text-nav-navigane" href="/class/11">11 класс</a></div>
             {% if current_user.is_authenticated  %}
+            <div class="div-nav-navigane"><a class="text-nav-navigane" href="/logout">Админ панель</a></div>
             <div class="div-nav-navigane"><a class="text-nav-navigane" href="/logout">Выход</a></div>
             {% endif %}
         </div>

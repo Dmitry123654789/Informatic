@@ -17,4 +17,4 @@ class LoginResource(Resource):
                 raise NotFound("Пользователь с таким email не найден")
             if not user.check_password(args['password']):
                 return make_response(jsonify({'message': 'Неверный пароль'}), 401)
-            return make_response(jsonify({'message': 'Успешный вход'}), 200)
+            return make_response(jsonify({'message': 'Успешный вход', 'user': {'id': user.id, 'email': user.email}}), 200)
