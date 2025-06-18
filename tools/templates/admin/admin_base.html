@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link href="{{ url_for('static', filename='css/profile_page.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/admin.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="profile-page__wrapper background-fill">
+    <div class="profile-container">
+        <div class="profile-sidebar__wrapper">
+            <nav class="profile-menu">
+                <ul class="list-group">
+                    <li class="profile-menu-item {% if '/class' in request.path %}active{% endif %}"><a
+                            href="{{ url_for('admin_classes') }}">Классы</a></li>
+
+                    <li class="profile-menu-item {% if '/tests' in request.path %}active{% endif %}"><a
+                            href="{{ url_for('admin_tests') }}">Тест</a></li>
+
+                    <li class="profile-menu-item {% if '/questios' in request.path %}active{% endif %}"><a
+                            href="{{ url_for('admin_questios') }}">Вопросы</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="profile-container">
+        <div class="profile-main__wrapper">
+            {% block admin_content %}
+
+            {% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}
