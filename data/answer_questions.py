@@ -1,10 +1,9 @@
 import sqlalchemy
-from sqlalchemy_serializer import SerializerMixin
 
 from .db_session import SqlAlchemyBase
 
 
-class AnswerQuestion(SqlAlchemyBase, SerializerMixin):
+class AnswerQuestion(SqlAlchemyBase):
     __tablename__ = 'answer'
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
