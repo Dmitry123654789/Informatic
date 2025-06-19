@@ -1,20 +1,18 @@
-from flask import make_response
-from flask import jsonify
-from flask_restful import Resource, abort
-from werkzeug.exceptions import NotFound, Unauthorized
+from flask import jsonify, Blueprint, make_response, request
+from werkzeug.exceptions import NotFound
 
-from .parser_login import login_parser
 from data import db_session
 from data.users import User
 
+users_bp = Blueprint('users_api', __name__, template_folder='templates')
 
-class LoginResource(Resource):
-    def post(self):
-        args = login_parser.parse_args()
-        with db_session.create_session() as session:
-            user = session.query(User).filter(User.email == args['email']).first()
-            if not user:
-                raise NotFound("Пользователь с таким email не найден")
-            if not user.check_password(args['password']):
-                return make_response(jsonify({'message': 'Неверный пароль'}), 401)
-            return make_response(jsonify({'message': 'Успешный вход', 'user': {'id': user.id, 'email': user.email}}), 200)
+
+@users_bp.route('/users', methods=['GET'])
+def post_login(**args):
+    with db_session.create_session() as session:
+        user = session.query(User).filter(User.email == args['email']).first()
+        if not user:
+            raise NotFound("Пользователь с таким email не найден")
+        if not user.check_password(args['password']):
+            return make_response(jsonify({'message': 'Неверный пароль'}), 401)
+        return make_response(jsonify({'message': 'Успешный вход', 'user': {'id': user.id, 'email': user.email}}), 200)

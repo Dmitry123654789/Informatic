@@ -11,14 +11,8 @@
         <div class="profile-sidebar__wrapper">
             <nav class="profile-menu">
                 <ul class="list-group">
-                    <li class="profile-menu-item {% if '/class' in request.path %}active{% endif %}"><a
-                            href="{{ url_for('admin_classes') }}">Классы</a></li>
-
-                    <li class="profile-menu-item {% if '/tests' in request.path %}active{% endif %}"><a
-                            href="{{ url_for('admin_tests') }}">Тест</a></li>
-
-                    <li class="profile-menu-item {% if '/questios' in request.path %}active{% endif %}"><a
-                            href="{{ url_for('admin_questios') }}">Вопросы</a></li>
+                    <li class="profile-menu-item {% if '/new_theme' in request.path %}active{% endif %}"><a
+                            href="/admin/new_theme">Тест</a></li>
                 </ul>
             </nav>
         </div>

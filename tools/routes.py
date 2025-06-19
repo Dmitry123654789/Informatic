@@ -3,14 +3,17 @@ from flask_login import login_user, logout_user
 from requests import post
 from werkzeug.exceptions import NotFound
 
+from api.resourse_login import post_login
 from data.answer_questions import AnswerQuestion
 from data.db_session import create_session
 from data.questions import Question
 from data.theme_questions import ThemeQuestions
 from data.training_class import TrainingClass
 from data.users import User
+from form.theme_form import ThemeForm
 from form.user_form import UserForm
 from tools import app, login_manager
+from tools.parse_docx_file import create_new_theme
 
 
 def chech_class(class_name):
@@ -85,10 +88,9 @@ def show_all_test(class_name):
 def login():
     form = UserForm()
     if request.method == 'POST':
-        login_post = post(f'http://localhost:5000/api/login',
-                          json={'email': form.email.data, 'password': form.password.data})
+        login_post = post_login(**{'email': form.email.data, 'password': form.password.data})
         if login_post.status_code == 200:
-            user = User(**login_post.json()['user'])
+            user = User(**login_post.json['user'])
             login_user(user, remember=True)
             return redirect('/')
         elif login_post.status_code == 401:
@@ -98,6 +100,17 @@ def login():
             form.email.errors = ['Пользователь не найден']
             return redirect('/login')
     return render_template('login.html', form=form)
+
+
+@app.route('/admin/new_theme', methods=['GET', 'POST'])
+def admin_classes():
+    form = ThemeForm()
+    if request.method == 'POST':
+        file = form.theme
+        train_class = form.train_class.data
+        answ = create_new_theme(file, train_class)
+        return render_template('admin/add_theme.html', train_class=train_class, success=True)
+    return render_template('admin/add_theme.html', form=form)
 
 
 @app.route('/logout', methods=['GET', 'POST'])

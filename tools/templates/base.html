@@ -14,7 +14,7 @@
 </head>
 <body>
 <main role="main" class="contener">
-<div class="offcanvas offcanvas-start text-bg-dark" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
+    <div class="offcanvas offcanvas-start text-bg-dark" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
          aria-labelledby="staticBackdropLabel">
         <div class="offcanvas-header">
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
@@ -23,13 +23,14 @@
         <div class="offcanvas-body" style="padding-top: 0">
             <div class="offcanvas-title" id="staticBackdropLabel"><a style="color: #fff !important"
                                                                      class="text-nav-title">Ответы</a></div>
+            <div class="div-nav-navigane"><a class="text-nav-navigane" href="/">Главная</a></div>
             <div class="div-nav-navigane"><a class="text-nav-navigane" href="/class/8">8 класс</a></div>
             <div class="div-nav-navigane"><a class="text-nav-navigane" href="/class/9">9 класс</a></div>
             <div class="div-nav-navigane"><a class="text-nav-navigane" href="/class/10">10 класс</a></div>
             <div class="div-nav-navigane"><a class="text-nav-navigane" href="/class/11">11 класс</a></div>
-            {% if current_user.is_authenticated  %}
-            <div class="div-nav-navigane"><a class="text-nav-navigane" href="/logout">Админ панель</a></div>
-            <div class="div-nav-navigane"><a class="text-nav-navigane" href="/logout">Выход</a></div>
+            {% if current_user.is_authenticated %}
+                <div class="div-nav-navigane"><a class="text-nav-navigane" href="/admin/new_theme">Админ панель</a></div>
+                <div class="div-nav-navigane"><a class="text-nav-navigane" href="/logout">Выход</a></div>
             {% endif %}
         </div>
     </div>

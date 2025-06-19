@@ -1,0 +1,42 @@
+{% extends "admin/admin_base.html" %}
+
+{% block admin_content %}
+    <div class="profile-main-section__wrapper">
+
+        <div class="content-label">Создание товара</div>
+        {% if success == True %}
+            <h2 class="align-center" style="color: var(--text-color);">Успешно!</h2>
+
+            <button class="btn btn-secondary"><a href="/{{ train_class }}">Перейти в класс</a></button>
+
+        {% else %}
+            <form id="productForm" method="post" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                <div class="profile-info-group">
+                    <span class="profile-info-group__text">Загрузка новой темы</span>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Цвет</span>
+                        {{ form.train_class(class='form-control', required=True) }}
+                    </div>
+                    {% for error in form.train_class.errors %}
+                        <div class="invalid-feedback d-block">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <div class="profile-info-group">
+                    <span class="profile-info-group__text">Файл ф формате .docx<br>! - загаловок, ? - вопрос, @ - ответ</span>
+                    <div class="input-group mb-3">
+                        {{ form.theme(class='form-control', accept=".docx") }}
+                    </div>
+                    {% for error in form.theme.errors %}
+                        <div class="invalid-feedback d-block">{{ error }}</div>
+                    {% endfor %}
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="Сохранить" name="save_sub">
+                {% include 'form_confirmation.html' %}
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}
