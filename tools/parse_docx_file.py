@@ -20,7 +20,10 @@ def translate_rus_to_eng(word, replase_space='_'):
 
 
 def save_photo(part_rels, translate_theme, train_class):
-    save_dir = f'tools/static/img/questions/{train_class}'
+    work_dir = 'tools/static/img/questions'
+    if not os.path.isdir(work_dir):
+        os.makedirs(work_dir)
+    save_dir = f'{work_dir}/{train_class}'
     if not os.path.isdir(save_dir):
         os.makedirs(save_dir)
     count_img = 0
@@ -38,8 +41,15 @@ def save_photo(part_rels, translate_theme, train_class):
 def create_new_theme(file, train_class):
     name = file.data.filename
     with create_session() as session:
-        theme_id = session.query(ThemeQuestions).all()[-1].id
-        question_id = session.query(Question).all()[-1].id
+        try:
+            theme_id = session.query(ThemeQuestions).all()[-1].id
+        except IndexError:
+            theme_id = 0
+
+        try:
+            question_id = session.query(Question).all()[-1].id
+        except IndexError:
+            question_id = 0
         class_id = session.query(TrainingClass).filter(TrainingClass.name == train_class).first().id
 
         doc = Document(BytesIO(file.data.read()))
