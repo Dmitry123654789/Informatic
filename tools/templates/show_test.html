@@ -12,19 +12,25 @@
     </div>
     <div style="margin: 5%">
         {#       ["название теста", ("вопрос", ["фото"], ["ответы"])]#}
-        <div align="center">
-            <a href="/class/{{ class_name }}" style="font-size: 2rem; text-decoration: none;">{{ questions[0] }}</a>
+        <div align="center" class="div-title-theme">
+            <a href="/class/{{ class_name }}" class="a-title-theme">{{ questions[0] }}</a>
         </div>
         {% for que in questions[1:] %}
-            <h4><br>{{ que[0] }}</h4>
+            <a><br>Задание № {{ loop.index }}</a>
+            <h4>{{ que[0] }}</h4>
 
+            <div  style="display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end;">
             {% for src_img in que[1] %}
-                <a href="#" class="gallery-item" data-easy-toggle="#modalWin"
-                   data-easy-class="show" data-easy-rcoe>
-                    <img src="{{ src_img }}" alt="фото потерялось(" style="max-width: 150px;">
-                </a>
+                <div style="display: flex; align-items: flex-end; gap: 5px;">
+                    <a>{{ loop.index }})</a>
+                    <a href="#" class="gallery-item" data-easy-toggle="#modalWin"
+                       data-easy-class="show" data-easy-rcoe>
+                        <img src="{{ src_img }}" alt="фото потерялось(" style="max-width: 150px;">
+                    </a>
+                </div>
             {% endfor %}
-
+            </div>
+            <br>
             {% for answer in que[2] %}
                 <h6>{{ loop.index }}) {{ answer }}</h6>
             {% endfor %}

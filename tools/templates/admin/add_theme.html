@@ -5,9 +5,11 @@
 
         <div class="content-label">Создание товара</div>
         {% if success == True %}
-            <h2 class="align-center" style="color: var(--text-color);">Успешно!</h2>
+            <h2 class="align-center">Успешно!</h2>
 
-            <button class="btn btn-secondary"><a href="/{{ train_class }}">Перейти в класс</a></button>
+            <button class="btn btn-secondary">
+                <a href="/class/{{ train_class }}" style="color: var(--text-color);">Перейти в класс</a>
+            </button>
 
         {% else %}
             <form id="productForm" method="post" enctype="multipart/form-data">

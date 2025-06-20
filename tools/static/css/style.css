@@ -253,3 +253,22 @@ button {
 .controls {
     margin-top: 10px;
 }
+
+.a-title-theme {
+    font-size: 2rem;
+    text-decoration: none;"
+}
+
+@media (max-width: 768px) {
+    .div-title-theme {
+        margin: 0 6.5%;
+    }
+
+    .a-title-theme {
+        font-size: 1.5rem;
+    }
+
+    .btn-thread-line {
+        left: 0;
+    }
+}

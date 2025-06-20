@@ -20,13 +20,19 @@ def translate_rus_to_eng(word, replase_space='_'):
 
 
 def save_photo(part_rels, translate_theme, train_class):
+    save_dir = f'tools/static/img/questions/{train_class}'
+    if not os.path.isdir(save_dir):
+        os.makedirs(save_dir)
+    count_img = 0
     for rel in part_rels:
         rel = part_rels[rel]
         if "image" in rel.target_ref:
             img_data = rel.target_part.blob
             img_name = rel.target_ref.split('/')[-1].split('.')
-            with open(f'../static/img/questions/{train_class}/{translate_theme}_{img_name[0][5:]}.{img_name[1]}', 'wb') as f:
+            with open(f'{save_dir}/{translate_theme}_{count_img}.{img_name[1]}', 'wb') as f:
                 f.write(img_data)
+            count_img += 1
+    return count_img - 1
 
 
 def create_new_theme(file, train_class):
@@ -38,6 +44,8 @@ def create_new_theme(file, train_class):
 
         doc = Document(BytesIO(file.data.read()))
         tr = translate_rus_to_eng(name).split('.')[0]
+
+        count_img = save_photo(doc.part._rels, tr, train_class)
 
         lines = []
         for x in [x.text for x in doc.paragraphs]:
@@ -63,8 +71,6 @@ def create_new_theme(file, train_class):
             elif x[0:3] == 'img':
                 img_ind += 1
                 que = session.get(Question, question_id)
-                que.question = que.question + f'\n/static/img/questions/{train_class}/{tr}_{img_ind}.png'
-
-        save_photo(doc.part._rels, tr, train_class)
+                que.question = que.question + f'\n/static/img/questions/{train_class}/{tr}_{min(img_ind, count_img)}.png'
 
         session.commit()

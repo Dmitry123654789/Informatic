@@ -1,4 +1,5 @@
 import sqlalchemy
+from sqlalchemy.orm import relationship
 
 from .db_session import SqlAlchemyBase
 
@@ -10,4 +11,4 @@ class Question(SqlAlchemyBase):
     question = sqlalchemy.Column(sqlalchemy.String)
 
     theme_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('theme_questions.id'))
-    theme = sqlalchemy.orm.relationship('ThemeQuestions')
+    theme = relationship('ThemeQuestions')

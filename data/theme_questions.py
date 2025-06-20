@@ -1,4 +1,5 @@
 import sqlalchemy
+from sqlalchemy.orm import relationship
 
 from .db_session import SqlAlchemyBase
 
@@ -10,4 +11,4 @@ class ThemeQuestions(SqlAlchemyBase):
     name = sqlalchemy.Column(sqlalchemy.String)
 
     class_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('training_class.id'))
-    training_class = sqlalchemy.orm.relationship('TrainingClass')
+    training_class = relationship('TrainingClass')
