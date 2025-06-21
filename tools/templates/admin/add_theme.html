@@ -8,7 +8,7 @@
             <h2 class="align-center">Успешно!</h2>
 
             <button class="btn btn-secondary">
-                <a href="/class/{{ train_class }}" style="color: var(--text-color);">Перейти в класс</a>
+                <a href="/class/{{ train_class }}" style="color: black;">Перейти в класс</a>
             </button>
 
         {% else %}
@@ -36,7 +36,7 @@
                     {% endfor %}
                 </div>
 
-                <input type="submit" class="btn btn-primary" value="Сохранить" name="save_sub">
+                <input type="submit" class="btn btn-primary" value="Создать" name="save_sub">
                 {% include 'form_confirmation.html' %}
             </form>
         {% endif %}
