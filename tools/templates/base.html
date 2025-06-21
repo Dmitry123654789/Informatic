@@ -29,9 +29,44 @@
             <div class="div-nav-navigane"><a class="text-nav-navigane" href="/class/10">10 класс</a></div>
             <div class="div-nav-navigane"><a class="text-nav-navigane" href="/class/11">11 класс</a></div>
             {% if current_user.is_authenticated %}
-                <div class="div-nav-navigane"><a class="text-nav-navigane" href="/admin/new_theme">Админ панель</a></div>
+                <div class="div-nav-navigane"><a class="text-nav-navigane" href="/admin/new_theme">Админ панель</a>
+                </div>
                 <div class="div-nav-navigane"><a class="text-nav-navigane" href="/logout">Выход</a></div>
             {% endif %}
+        </div>
+        <div class="support-body">
+            <span>По любым вопросам писать на почту<br></span>
+            <a href="mailto:pokemon2708@yandex.ru">pokemon2708@yandex.ru</a>
+
+            <span><br><br>Поддержать проект<br></span>
+            <input type="text" id="card-number" value="2200 1529 2041 9010" readonly>
+            <div class="tooltip">
+                <button class="copy-button" data-clipboard-target="#card-number" onclick="myFunction()">
+                    <img style="width: 20px;" src="{{ url_for('static', filename='img/copy_icon.png') }}" alt="Copy">
+                </button>
+                <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+            </div>
+            <script>
+
+                function myFunction() {
+                    var copyText = document.getElementById("card-number");
+                    copyText.select();
+                    document.execCommand("copy");
+
+                    var tooltip = document.getElementById("myTooltip");
+                    tooltip.innerHTML = "Скопировано!";
+                    tooltip.style.visibility = "visible";
+                    tooltip.style.opacity = "1";
+
+                    // Автоматическое скрытие через 2 секунды
+                    setTimeout(function () {
+                        tooltip.style.visibility = "hidden";
+                        tooltip.style.opacity = "0";
+                        tooltip.innerHTML = "Copy to clipboard";
+                    }, 2000);
+                }
+
+            </script>
         </div>
     </div>
     <button class="btn-thread-line" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
@@ -45,3 +80,78 @@
 </main>
 </body>
 </html>
+
+
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1">#}
+{#    <style>#}
+{#        .tooltip {#}
+{#            position: relative;#}
+{#            display: inline-block;#}
+{#        }#}
+{##}
+{#        .tooltip .tooltiptext {#}
+{#            visibility: hidden;#}
+{#            width: 140px;#}
+{#            background-color: #555;#}
+{#            color: #fff;#}
+{#            text-align: center;#}
+{#            border-radius: 6px;#}
+{#            padding: 5px;#}
+{#            position: absolute;#}
+{#            z-index: 1;#}
+{#            bottom: 150%;#}
+{#            left: 50%;#}
+{#            margin-left: -75px;#}
+{#            opacity: 0;#}
+{#            transition: opacity 0.3s;#}
+{#        }#}
+{##}
+{#        .tooltip .tooltiptext::after {#}
+{#            content: "";#}
+{#            position: absolute;#}
+{#            top: 100%;#}
+{#            left: 50%;#}
+{#            margin-left: -5px;#}
+{#            border-width: 5px;#}
+{#            border-style: solid;#}
+{#            border-color: #555 transparent transparent transparent;#}
+{#        }#}
+{##}
+{#        .tooltip:hover .tooltiptext {#}
+{#            visibility: visible;#}
+{#            opacity: 1;#}
+{#        }#}
+{#    </style>#}
+{#</head>#}
+{#<body>#}
+{##}
+{##}
+{##}
+{#<input type="text" value="Hello World" id="card-number">#}
+{#<div class="tooltip">#}
+{#    <button onclick="myFunction()" onmouseout="outFunc()">#}
+{#        <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>#}
+{#        Copy text#}
+{#    </button>#}
+{#</div>#}
+{##}
+{##}
+{#<script>#}
+{#    function myFunction() {#}
+{#        var copyText = document.getElementById("card-number");#}
+{#        copyText.select();#}
+{#        document.execCommand("copy");#}
+{##}
+{#        var tooltip = document.getElementById("myTooltip");#}
+{#        tooltip.innerHTML = "Текст скопирован";#}
+{#    }#}
+{#    #}
+{#</script>#}
+{#</body>#}
+{#</html>#}
+
+
+

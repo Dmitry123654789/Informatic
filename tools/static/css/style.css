@@ -263,6 +263,76 @@ button {
     background-color: #e9d7d7bf;
 }
 
+.support-body {
+    padding-left: 36px;
+    padding-bottom: 40px;
+}
+
+#card-number {
+    width: 160px;
+    border: none;
+    background: transparent;
+    color: #FFFFFF;
+    padding: 0;
+    cursor: pointer;
+
+}
+
+
+.copy-button {
+  border: none;
+  background: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.copy-button img {
+  vertical-align: middle;
+}
+
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    opacity: 1;
+}
+
+.copy-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 140px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+
 @media (max-width: 768px) {
     .div-title-theme {
         margin: 0 6.5%;
