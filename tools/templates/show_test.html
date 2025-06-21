@@ -10,43 +10,23 @@
             <span id="matchCounter"></span>
         </div>
     </div>
-    <div style="margin: 5%">
-        {#       ["название теста", ("вопрос", ["фото"], ["ответы"])]#}
-        <div align="center" class="div-title-theme">
-            <a href="/class/{{ class_name }}" class="a-title-theme">{{ questions[0] }}</a>
-        </div>
-        {% for que in questions[1:] %}
-            <a><br>Задание № {{ loop.index }}</a>
-            <h4>{{ que[0] }}</h4>
-
-            <div  style="display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end;">
-            {% for src_img in que[1] %}
-                <div style="display: flex; align-items: flex-end; gap: 5px;">
-                    <a>{{ loop.index }})</a>
-                    <a href="#" class="gallery-item" data-easy-toggle="#modalWin"
-                       data-easy-class="show" data-easy-rcoe>
-                        <img src="{{ src_img }}" alt="фото потерялось(" style="max-width: 150px;">
-                    </a>
-                </div>
-            {% endfor %}
-            </div>
-            <br>
-            {% for answer in que[2] %}
-                <h6>{{ loop.index }}) {{ answer }}</h6>
-            {% endfor %}
-        {% endfor %}
-
+    {% include 'one_show_test.html' %}
+    <div style="height: 130px; margin: 0 5%">
+    {% if current_user.is_authenticated %}
+        <a href="#" class="btn btn-danger" data-easy-toggle="#modalWin" data-easy-class="show">Удалить тест</a>
+        {% include 'form_confirmation.html' %}
+    {% endif %}
     </div>
-    <div style="height: 130px"></div>
-    <div id="modalWin" class="modal">
+
+    <div id="modalWin-img" class="modal">
         <button class="modal-prev">&#10094;</button>
         <button class="modal-next">&#10095;</button>
         <div class="modal-window">
             <img src="">
         </div>
-        <div class="overlay" data-easy-toggle="#modalWin" data-easy-class="show" data-easy-rcoe></div>
+        <div class="overlay" data-easy-toggle="#modalWin-img" data-easy-class="show-img" data-easy-rcoe></div>
     </div>
-    <script src="{{ url_for('static', filename='js/modal_wind.js') }}"></script>
+
     <script src="{{ url_for('static', filename='js/view_photo.js') }}"></script>
     <script src="{{ url_for('static', filename='js/search.js') }}"></script>
 {% endblock %}

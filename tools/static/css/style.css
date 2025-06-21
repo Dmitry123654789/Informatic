@@ -74,12 +74,7 @@ button {
 
 /* Background Styles */
 .background-fill {
-    background-color: hsla(44.4, 76.2%, 75.3%, 0.91);
-    background-image:
-        radial-gradient(at 96% 93%, hsla(40, 44%, 84%, 0.82) 0px, transparent 50%),
-        radial-gradient(at 2% 7%, hsla(40, 44%, 84%, 0.82) 0px, transparent 50%),
-        radial-gradient(at 5% 91%, hsla(40, 44%, 84%, 0.82) 0px, transparent 50%),
-        radial-gradient(at 95% 13%, hsla(40, 44%, 84%, 0.82) 0px, transparent 50%);
+    background-color: #e7e9f1;
 }
 
 /* Modal Styles */
@@ -98,7 +93,7 @@ button {
     transition: all .09s ease-out;
 }
 
-.modal.show {
+.modal.show-img {
     visibility: visible;
     z-index: 1000;
     opacity: 1;
@@ -256,7 +251,16 @@ button {
 
 .a-title-theme {
     font-size: 2rem;
-    text-decoration: none;"
+    text-decoration: none;
+"
+}
+
+.btn-outline-primary {
+    background-color: #c7c7c7;
+}
+
+.btn-outline-danger {
+    background-color: #e9d7d7bf;
 }
 
 @media (max-width: 768px) {

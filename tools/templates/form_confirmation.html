@@ -1,5 +1,74 @@
-<div id="modalWin" class="modal">
-    <div class="modal-window">
+<style>
+    .modal-confirmation {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        visibility: hidden;
+        z-index: -1;
+        opacity: 0;
+        transition: all .09s ease-out;
+    }
+
+    .modal-confirmation.show {
+        visibility: visible;
+        z-index: 1000;
+        opacity: 1;
+    }
+
+    .modal-confirmation .overlay-confirmation {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000000;
+        opacity: 0.7;
+        z-index: 0;
+    }
+
+    .modal-confirmation h2 {
+        margin-bottom: 15px;
+    }
+
+    .modal-confirmation input {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .modal-window-confirmation {
+        position: relative;
+        z-index: 2;
+        width: 400px;
+        border-radius: 10px;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, .4);
+        background-color: #FFFFFF;
+        padding: 30px;
+    }
+
+    .modal-window-confirmation .btn-close {
+        position: absolute;
+        border: none;
+        background: none;
+        opacity: 0.7;
+        right: 10px;
+        top: 10px;
+    }
+
+    .modal-window-confirmation .btn-close:hover {
+        opacity: 1;
+    }
+</style>
+
+<div id="modalWin" class="modal-confirmation">
+    <div class="modal-window-confirmation">
         <h3>Хорошо подумайте перед этим действием</h3>
         <form method="post">
             <div style="display: flex; gap: 20px;">
@@ -13,6 +82,6 @@
         </form>
         <button data-easy-toggle="#modalWin" data-easy-class="show" data-easy-rcoe class="btn-close">X</button>
     </div>
-    <div class="overlay" data-easy-toggle="#modalWin" data-easy-class="show" data-easy-rcoe></div>
+    <div class="overlay-confirmation" data-easy-toggle="#modalWin" data-easy-class="show" data-easy-rcoe></div>
 </div>
 <script src="{{ url_for('static', filename='js/modal_wind.js') }}"></script>

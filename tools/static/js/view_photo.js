@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const modal = document.querySelector("#modalWin");
+    const modal = document.querySelector("#modalWin-img");
     const modalImg = modal.querySelector(".modal-window img");
     const galleryLinks = Array.from(document.querySelectorAll(".gallery-item"));
     const nextBtn = modal.querySelector(".modal-next");

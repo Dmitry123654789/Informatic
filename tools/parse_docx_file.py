@@ -32,10 +32,10 @@ def save_photo(part_rels, translate_theme, train_class):
         if "image" in rel.target_ref:
             img_data = rel.target_part.blob
             img_name = rel.target_ref.split('/')[-1].split('.')
-            with open(f'{save_dir}/{translate_theme}_{count_img}.{img_name[1]}', 'wb') as f:
+            with open(f'{save_dir}/{translate_theme}_{img_name[0][5:]}.{img_name[1]}', 'wb') as f:
                 f.write(img_data)
             count_img += 1
-    return count_img - 1
+    return count_img
 
 
 def create_new_theme(file, train_class):

@@ -11,26 +11,7 @@
         </div>
     </div>
     {% for questions in all_lst_questions %}
-        <div style="margin: 5%">
-            {#       ["название теста", ("вопрос", ["фото"], ["ответы"])]#}
-            <div align="center">
-                <a href="/class/{{ class_name }}" style="font-size: 2rem; text-decoration: none;">{{ questions[0] }}</a>
-            </div>
-            {% for que in questions[1:] %}
-                <h4><br>{{ que[0] }}</h4>
-
-                {% for src_img in que[1] %}
-                    <a href="#" class="gallery-item" data-easy-toggle="#modalWin"
-                       data-easy-class="show" data-easy-rcoe>
-                        <img src="{{ src_img }}" alt="фото потерялось(" style="max-width: 150px;">
-                    </a>
-                {% endfor %}
-
-                {% for answer in que[2] %}
-                    <h6>{{ loop.index }}) {{ answer }}</h6>
-                {% endfor %}
-            {% endfor %}
-        </div>
+        {% include 'one_show_test.html' %}
     {% endfor %}
     <div style="height: 130px"></div>
     <div id="modalWin" class="modal">
