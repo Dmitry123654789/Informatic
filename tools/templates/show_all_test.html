@@ -14,14 +14,16 @@
         {% include 'one_show_test.html' %}
     {% endfor %}
     <div style="height: 130px"></div>
-    <div id="modalWin" class="modal">
+
+    <div id="modalWin-img" class="modal">
         <button class="modal-prev">&#10094;</button>
         <button class="modal-next">&#10095;</button>
         <div class="modal-window">
             <img src="">
         </div>
-        <div class="overlay" data-easy-toggle="#modalWin" data-easy-class="show" data-easy-rcoe></div>
+        <div class="overlay" data-easy-toggle="#modalWin-img" data-easy-class="show-img" data-easy-rcoe></div>
     </div>
+
     <script src="{{ url_for('static', filename='js/modal_wind.js') }}"></script>
     <script src="{{ url_for('static', filename='js/view_photo.js') }}"></script>
     <script src="{{ url_for('static', filename='js/search.js') }}"></script>

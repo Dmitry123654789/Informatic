@@ -12,10 +12,10 @@
     </div>
     {% include 'one_show_test.html' %}
     <div style="height: 130px; margin: 0 5%">
-    {% if current_user.is_authenticated %}
-        <a href="#" class="btn btn-danger" data-easy-toggle="#modalWin" data-easy-class="show">Удалить тест</a>
-        {% include 'form_confirmation.html' %}
-    {% endif %}
+        {% if current_user.is_authenticated %}
+            <a href="#" class="btn btn-danger" data-easy-toggle="#modalWin" data-easy-class="show">Удалить тест</a>
+            {% include 'form_confirmation.html' %}
+        {% endif %}
     </div>
 
     <div id="modalWin-img" class="modal">
